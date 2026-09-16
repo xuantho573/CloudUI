@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+/**
+ * Design tokens shared by the host shell and every remote.
+ *
+ * Imported ONCE, by the host — remotes only read the variables. Importing this
+ * from a remote too would put a second copy of these declarations on the page
+ * and make whichever loaded last win.
+ *
+ * Remotes must degrade gracefully when a token is missing: a remote opened
+ * standalone has no host to provide them, so always pair var() with a fallback.
+ */
+:root {
+  /* Brand accents, one per framework. */
+  --cloud-ui-react: #61dafb;
+  --cloud-ui-vue: #42b883;
+
+  /* Surfaces */
+  --cloud-ui-surface-border-alpha: 55;
+  --cloud-ui-radius-card: 12px;
+  --cloud-ui-radius-control: 8px;
+  --cloud-ui-radius-inline: 4px;
+
+  /* Spacing */
+  --cloud-ui-space-card: 1.5rem;
+  --cloud-ui-space-row: 0.75rem;
+
+  /* Controls */
+  --cloud-ui-control-bg: #1a1a1a;
+  --cloud-ui-control-fg: #fff;
+
+  /* Type */
+  --cloud-ui-font-stack: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --cloud-ui-font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+}

@@ -1,0 +1,26 @@
+{
+  "name": "vue-remote",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vp dev",
+    "build": "vue-tsc -b && vp build",
+    "preview": "vp preview"
+  },
+  "dependencies": {
+    "@cloud-ui/shared": "workspace:*",
+    "vue": "^3.5.42"
+  },
+  "devDependencies": {
+    "@cloud-ui/contract": "workspace:*",
+    "@cloud-ui/dev-registry": "workspace:*",
+    "@module-federation/vite": "^1.21.6",
+    "@vitejs/plugin-vue": "^6.0.8",
+    "@vue/tsconfig": "^0.9.1",
+    "typescript": "catalog:",
+    "vite": "catalog:",
+    "vite-plus": "catalog:",
+    "vue-tsc": "^3.3.11"
+  }
+}

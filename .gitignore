@@ -27,3 +27,6 @@ dist-ssr
 .env
 .env.*
 !.env.example
+
+# Module Federation generated remote type declarations
+@mf-types

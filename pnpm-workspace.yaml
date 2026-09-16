@@ -1,6 +1,14 @@
+packages:
+  - apps/*
+  - packages/*
+  - tools/*
+
 catalog:
   vite: npm:@voidzero-dev/vite-plus-core@0.3.2
   vite-plus: 0.3.2
+  react: 19.3.0
+  react-dom: 19.3.0
+  typescript: ^6.0.2
 overrides:
   vite@*: "catalog:"
 peerDependencyRules:

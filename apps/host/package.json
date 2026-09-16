@@ -1,0 +1,25 @@
+{
+  "name": "host",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vp dev",
+    "build": "tsc -b && vp build",
+    "preview": "vp preview"
+  },
+  "dependencies": {
+    "@cloud-ui/shared": "workspace:*",
+    "@module-federation/runtime": "2.9.0"
+  },
+  "devDependencies": {
+    "@cloud-ui/contract": "workspace:*",
+    "@cloud-ui/dev-registry": "workspace:*",
+    "@module-federation/vite": "^1.21.6",
+    "@tailwindcss/vite": "^4.3.3",
+    "tailwindcss": "^4.3.3",
+    "typescript": "catalog:",
+    "vite": "catalog:",
+    "vite-plus": "catalog:"
+  }
+}

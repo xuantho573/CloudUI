@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CloudUI host</title>
+  </head>
+  <body>
+    <main>
+      <header class="shell-header">
+      <img class="framework" alt="" width="48" height="48" />
+        <h1>CloudUI host shell</h1>
+        <p>
+          This page ships no framework. Each panel below is a separately built app loaded at runtime
+          over Module Federation.
+        </p>
+      </header>
+
+      <div id="content" class="flex flex-col gap-y-2" />
+    </main>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
