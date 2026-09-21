@@ -164,6 +164,18 @@ settings:
 
 catalogs:
   default:
+    '@module-federation/runtime':
+      specifier: 2.9.0
+      version: 2.9.0
+    '@module-federation/vite':
+      specifier: ^1.21.6
+      version: 1.21.6
+    '@types/react':
+      specifier: 19.3.0
+      version: 19.3.0
+    '@types/react-dom':
+      specifier: 19.3.0
+      version: 19.3.0
     react:
       specifier: 19.3.0
       version: 19.3.0
@@ -179,6 +191,9 @@ catalogs:
     vite-plus:
       specifier: 0.3.2
       version: 0.3.2
+    vue:
+      specifier: ^3.5.42
+      version: 3.5.42
 
 overrides:
   vite@*: npm:@voidzero-dev/vite-plus-core@0.3.2
@@ -203,24 +218,58 @@ importers:
         specifier: workspace:*
         version: link:../../packages/shared
       '@module-federation/runtime':
-        specifier: 2.9.0
+        specifier: 'catalog:'
         version: 2.9.0
     devDependencies:
-      '@cloud-ui/contract':
-        specifier: workspace:*
-        version: link:../../packages/contract
-      '@cloud-ui/dev-registry':
-        specifier: workspace:*
-        version: link:../../tools/dev-registry
       '@module-federation/vite':
-        specifier: ^1.21.6
+        specifier: 'catalog:'
         version: 1.21.6(@voidzero-dev/vite-plus-core@0.3.2(@types/node@24.13.4)(jiti@2.7.0)(typescript@6.0.2))(typescript@6.0.2)(vue-tsc@3.3.11(typescript@6.0.2))
       '@tailwindcss/vite':
         specifier: ^4.3.3
         version: 4.3.3(@voidzero-dev/vite-plus-core@0.3.2(@types/node@24.13.4)(jiti@2.7.0)(typescript@6.0.2))
+      '@vitejs/plugin-react':
+        specifier: ^6.1.1
+        version: 6.1.1(@voidzero-dev/vite-plus-core@0.3.2(@types/node@24.13.4)(jiti@2.7.0)(typescript@6.0.2))
       tailwindcss:
         specifier: ^4.3.3
         version: 4.3.3
+      typescript:
+        specifier: 'catalog:'
+        version: 6.0.2
+      vite:
+        specifier: 'catalog:'
+        version: '@voidzero-dev/vite-plus-core@0.3.2(@types/node@24.13.4)(jiti@2.7.0)(typescript@6.0.2)'
+      vite-plus:
+        specifier: 'catalog:'
+        version: 0.3.2(@types/node@24.13.4)(jiti@2.7.0)(typescript@6.0.2)
+
+  apps/primer-remote:
+    dependencies:
+      '@cloud-ui/shared':
+        specifier: workspace:*
+        version: link:../../packages/shared
+      '@primer/primitives':
+        specifier: ^11.10.0
+        version: 11.10.0
+      '@primer/react':
+        specifier: ^38.40.0
+        version: 38.40.0(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react-is@19.3.0)(react@19.3.0)
+      react:
+        specifier: 'catalog:'
+        version: 19.3.0
+      react-dom:
+        specifier: 'catalog:'
+        version: 19.3.0(react@19.3.0)
+    devDependencies:
+      '@types/react':
+        specifier: 'catalog:'
+        version: 19.3.0
+      '@types/react-dom':
+        specifier: 'catalog:'
+        version: 19.3.0(@types/react@19.3.0)
+      '@vitejs/plugin-react':
+        specifier: ^6.1.1
+        version: 6.1.1(@voidzero-dev/vite-plus-core@0.3.2(@types/node@24.13.4)(jiti@2.7.0)(typescript@6.0.2))
       typescript:
         specifier: 'catalog:'
         version: 6.0.2
@@ -243,20 +292,11 @@ importers:
         specifier: 'catalog:'
         version: 19.3.0(react@19.3.0)
     devDependencies:
-      '@cloud-ui/contract':
-        specifier: workspace:*
-        version: link:../../packages/contract
-      '@cloud-ui/dev-registry':
-        specifier: workspace:*
-        version: link:../../tools/dev-registry
-      '@module-federation/vite':
-        specifier: ^1.21.6
-        version: 1.21.6(@voidzero-dev/vite-plus-core@0.3.2(@types/node@24.13.4)(jiti@2.7.0)(typescript@6.0.2))(typescript@6.0.2)(vue-tsc@3.3.11(typescript@6.0.2))
       '@types/react':
-        specifier: ^19.2.18
+        specifier: 'catalog:'
         version: 19.3.0
       '@types/react-dom':
-        specifier: ^19.2.7
+        specifier: 'catalog:'
         version: 19.3.0(@types/react@19.3.0)
       '@vitejs/plugin-react':
         specifier: ^6.1.1
@@ -280,15 +320,6 @@ importers:
         specifier: ^3.5.42
         version: 3.5.42(typescript@6.0.2)
     devDependencies:
-      '@cloud-ui/contract':
-        specifier: workspace:*
-        version: link:../../packages/contract
-      '@cloud-ui/dev-registry':
-        specifier: workspace:*
-        version: link:../../tools/dev-registry
-      '@module-federation/vite':
-        specifier: ^1.21.6
-        version: 1.21.6(@voidzero-dev/vite-plus-core@0.3.2(@types/node@24.13.4)(jiti@2.7.0)(typescript@6.0.2))(typescript@6.0.2)(vue-tsc@3.3.11(typescript@6.0.2))
       '@vitejs/plugin-vue':
         specifier: ^6.0.8
         version: 6.0.9(@voidzero-dev/vite-plus-core@0.3.2(@types/node@24.13.4)(jiti@2.7.0)(typescript@6.0.2))(vue@3.5.42(typescript@6.0.2))
@@ -308,26 +339,30 @@ importers:
         specifier: ^3.3.11
         version: 3.3.11(typescript@6.0.2)
 
-  packages/contract: {}
-
   packages/shared:
     dependencies:
-      '@tailwindcss/vite':
-        specifier: ^4.3.3
-        version: 4.3.3(@voidzero-dev/vite-plus-core@0.3.2(@types/node@24.13.4)(jiti@2.7.0)(typescript@6.0.2))
-      tailwindcss:
-        specifier: ^4.3.3
-        version: 4.3.3
-    devDependencies:
-      vite:
+      react:
         specifier: 'catalog:'
-        version: '@voidzero-dev/vite-plus-core@0.3.2(@types/node@24.13.4)(jiti@2.7.0)(typescript@6.0.2)'
-
-  tools/dev-registry:
-    devDependencies:
-      vite:
+        version: 19.3.0
+      react-dom:
         specifier: 'catalog:'
-        version: '@voidzero-dev/vite-plus-core@0.3.2(@types/node@24.13.4)(jiti@2.7.0)(typescript@6.0.2)'
+        version: 19.3.0(react@19.3.0)
+      vue:
+        specifier: 'catalog:'
+        version: 3.5.42(typescript@6.0.2)
+    devDependencies:
+      '@module-federation/vite':
+        specifier: 'catalog:'
+        version: 1.21.6(@voidzero-dev/vite-plus-core@0.3.2(@types/node@24.13.4)(jiti@2.7.0)(typescript@6.0.2))(typescript@6.0.2)(vue-tsc@3.3.11(typescript@6.0.2))
+      '@types/react':
+        specifier: 'catalog:'
+        version: 19.3.0
+      '@types/react-dom':
+        specifier: 'catalog:'
+        version: 19.3.0(@types/react@19.3.0)
+      vue-tsc:
+        specifier: ^3.3.11
+        version: 3.3.11(typescript@6.0.2)
 
 packages:
 
@@ -359,6 +394,12 @@ packages:
   '@blazediff/core@1.9.1':
     resolution: {integrity: sha512-ehg3jIkYKulZh+8om/O25vkvSsXXwC+skXmyA87FFx6A/45eqOkZsBltMw/TVteb0mloiGT8oGRTcjRAz66zaA==}
 
+  '@github/mini-throttle@2.1.1':
+    resolution: {integrity: sha512-KtOPaB+FiKJ6jcKm9UKyaM5fPURHGf+xcp+b4Mzoi81hOc6M1sIGpMZMAVbNzfa2lW5+RPGKq888Px0j76OZ/A==}
+
+  '@github/relative-time-element@5.3.1':
+    resolution: {integrity: sha512-f++QCIXxGH7rMbpTASRfLyCyPydd4HqwOmATBb/sAUCq72HEZN0MX9znmJSp7NKYxuQxF8j0Mv3ez9P32c70vw==}
+
   '@jridgewell/gen-mapping@0.3.13':
     resolution: {integrity: sha512-2kkt/7niJ6MgEPxF0bYdQ6etZaA+fQvDcLKckhy1yIQOzaoKjBBjSj63/aLVjYE3qhRt5dvM+uUyfCg6UKCBbA==}
 
@@ -374,6 +415,12 @@ packages:
 
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
+
+  '@lit-labs/react@1.2.1':
+    resolution: {integrity: sha512-DiZdJYFU0tBbdQkfwwRSwYyI/mcWkg3sWesKRsHUd4G+NekTmmeq9fzsurvcKTNVa0comNljwtg4Hvi1ds3V+A==}
+
+  '@lit-labs/ssr-dom-shim@1.6.0':
+    resolution: {integrity: sha512-VHb0ALPMTlgKjM6yIxxoQNnpKyUKLD04VzeQdsiXkMqkvYlAHxq9glGLmgbb889/1GsohSOAjvQYoiBppXFqrQ==}
 
   '@module-federation/dts-plugin@2.9.0':
     resolution: {integrity: sha512-uMGqEG/p9odG2BVr7WRbBe2OgrvzBd3LPzcp5WP+bm3djBdUJ4PZ3ozqKp6qpy+NFnlh6vnM815Xn6AXkKy1Vw==}
@@ -407,6 +454,9 @@ packages:
     engines: {node: ^20.19.0 || >=22.12.0}
     peerDependencies:
       vite: ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0
+
+  '@oddbird/popover-polyfill@0.5.2':
+    resolution: {integrity: sha512-iFrvar5SOMtKFOSjYvs4z9UlLqDdJbMx0mgISLcPedv+g0ac5sgeETLGtipHCVIae6HJPclNEH5aCyD1RZaEHw==}
 
   '@oxc-project/runtime@0.149.0':
     resolution: {integrity: sha512-XNtswoJPeaVa+Ry8A1FdEaJTAu6xZ8zg4ZijGPOAWWMRCUuDekEDwxmtIgP5DG67Sh1CVmq+bnTbqhnGHhn/Lg==}
@@ -696,6 +746,38 @@ packages:
   '@polka/url@1.0.0-next.29':
     resolution: {integrity: sha512-wwQAWhWSuHaag8c4q/KN/vCoeOJYshAIvMQwD4GpSb3OiZklFfvAgmj0VCBBImRpuF/aFgIRzllXlVX93Jevww==}
 
+  '@primer/behaviors@1.11.0':
+    resolution: {integrity: sha512-kDHtaw9kfCjPVT61eM731ftckhGyWiPX+OKmUccLN9sMFt9E6FXmsPAbny7O0RBxeW1Xj/NHNdbMEjYEg2dBYg==}
+
+  '@primer/live-region-element@0.8.0':
+    resolution: {integrity: sha512-DIp04IeZvZ+gwCUcBchIvRwJA2PikP/6hnFhcLKgwttcg5OYjBH9t0cZjLnv10Aq1jN0rAFFG+WPMd3bw4hXcA==}
+
+  '@primer/octicons-react@19.38.0':
+    resolution: {integrity: sha512-ZzWVrX6kluBaCepsDj/jAxagBOMaRX18LEf723IKpr4E/jdkTdCOtlsN+60Oj7IV9YEVrlUpo9Oky0Tn1heSCA==}
+    peerDependencies:
+      react: '>=16.3'
+
+  '@primer/primitives@11.10.0':
+    resolution: {integrity: sha512-ihZxIst4Izry284StKFjpbYvX6R/IBFTLu+qiuAmR93PsKF2hdjoabhSYwKI8iCxOUx94jVP55bI3NoY7STjYQ==}
+
+  '@primer/react@38.40.0':
+    resolution: {integrity: sha512-tBCUkD+OwlRZDiV4I4Ft2WxW9g3jrYKi2LkGaHi6BJat8RPTo/47rW4G7GNvkiDSSpe6jGFnU2cP4NIzd52kzA==}
+    engines: {node: '>=12', npm: '>=7'}
+    peerDependencies:
+      '@types/react': 18.x || 19.x
+      '@types/react-dom': 18.x || 19.x
+      '@types/react-is': 18.x || 19.x
+      react: 18.x || 19.x
+      react-dom: 18.x || 19.x
+      react-is: 18.x || 19.x
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      '@types/react-dom':
+        optional: true
+      '@types/react-is':
+        optional: true
+
   '@rolldown/pluginutils@1.0.1':
     resolution: {integrity: sha512-2j9bGt5Jh8hj+vPtgzPtl72j0yRxHAyumoo6TNfAjsLB04UtpSvPbPcDcBMxz7n+9CYB0c1GxQFxYRg2jimqGw==}
 
@@ -795,6 +877,15 @@ packages:
     resolution: {integrity: sha512-yYU8cogLeSh/ms2jh8Fj7jaba/EWa7Ja6GoUqYZaraEuCI5YS6ms6ObZgjjedm+jm6XZjdNRWBpPP6Z86oOxcw==}
     peerDependencies:
       vite: ^5.2.0 || ^6 || ^7 || ^8
+
+  '@tanstack/react-virtual@3.14.13':
+    resolution: {integrity: sha512-JbDTAwtzZ99aOeCrAfW5EsE5KSq5RWh6Af2dtFwyLIIk48Ja7vm6n4axu/43T3vfjFnEGJalxJ1wyYjSQD6bSg==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+
+  '@tanstack/virtual-core@3.17.11':
+    resolution: {integrity: sha512-+ILjvtHup6Y2hzQ6YzwMgX1Q+oQpxEGOXCEsCNaPoIP0VxMbizIBTmYTDtkerkIQS8/CbP1BRuyt8V/8BCsy1g==}
 
   '@testing-library/dom@10.4.2':
     resolution: {integrity: sha512-yzr2S9HyAIdhz2/6qHgbs665Q7PKVcDF05vsOlHPxG1mo36gKVesdYVeDLnXgfjJ03CrKRk08knc6+E/9m8v2Q==}
@@ -1216,11 +1307,22 @@ packages:
     resolution: {integrity: sha512-NUPRluOfOiTKBKvWPtSD4PhFvWCqOi0BGStNWs57X9js7XGTprSmFoz5F0tWhR4WPjNeR9jXqdC7/UpSJTnlRg==}
     engines: {node: '>=18'}
 
+  clsx@2.1.1:
+    resolution: {integrity: sha512-eYm0QWBtUrBWZWG0d386OGAw16Z995PiOVo2B7bjWSbHedGl5e0ZWaq65kOGgUSNesEIDkB9ISbTg/JK9dhCZA==}
+    engines: {node: '>=6'}
+
+  color2k@2.0.4:
+    resolution: {integrity: sha512-OXAPGFRNeLFnUfqDtloYdxkwsJoIdXe28+bjbpJiPqyei2HPa3VHmMCWa0Qe62+U4Ftf9Hj7hRssOkxz7WiWbg==}
+
   convert-source-map@2.0.0:
     resolution: {integrity: sha512-Kvp459HrV2FEJ1CAsi1Ku+MY3kasH19TFykTz2xWmMeq6bk2NU3XXvfJ+Q61m0xktWwt+1HSYf3JZsTms3aRJg==}
 
   csstype@3.2.3:
     resolution: {integrity: sha512-z1HGKcYy2xA8AGQfwrn0PAy+PB7X/GSj3UVJW9qKyn43xWa+gl5nXmU4qqLMRzWVLFC8KusUX8T/0kCiOYpAIQ==}
+
+  deepmerge@4.3.1:
+    resolution: {integrity: sha512-3sUqbMEc77XqpdNO7FRyRog+eW3ph+GYCbj+rK+uYyRMuwsVy0rMiVtPn+QJlKFvWP/1PYpapqYn0Me2knFn+A==}
+    engines: {node: '>=0.10.0'}
 
   dequal@2.0.3:
     resolution: {integrity: sha512-0je+qPKHEMohvfRTCEo3CrPG6cAzAYgmzKyxRiYSSDkS6eGJdyVJm7WaYA5ECaAD9wLB2T4EEeymA5aFVcYXCA==}
@@ -1263,6 +1365,9 @@ packages:
       picomatch:
         optional: true
 
+  focus-visible@5.2.1:
+    resolution: {integrity: sha512-8Bx950VD1bWTQJEH/AM6SpEk+SU55aVnp4Ujhuuxy3eMEBCRwBnTBnVXr9YAPvZL3/CNjCa8u4IWfNmEO53whA==}
+
   fsevents@2.3.3:
     resolution: {integrity: sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==}
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
@@ -1270,6 +1375,12 @@ packages:
 
   graceful-fs@4.2.11:
     resolution: {integrity: sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ==}
+
+  history@5.3.0:
+    resolution: {integrity: sha512-ZqaKwjjrAYUYfLG+htGaIIZ4nioX2L70ZUMIFysS3xvBsSG4x/n1V6TXV3N8ZYNuFGlDirFg32T7B6WOUPDYcQ==}
+
+  hsluv@1.0.1:
+    resolution: {integrity: sha512-zCaFTiDqBLQjCCFBu0qg7z9ASYPd+Bxx2GDCVZJsnehjK80S+jByqhuFz0pCd2Aw3FSKr18AWbRlwnKR0YdizQ==}
 
   isomorphic-ws@5.0.0:
     resolution: {integrity: sha512-muId7Zzn9ywDsyXgTIafTry2sV3nySZeUDe6YedVd1Hvuuep5AsIlqK+XefWpYTyJG5e503F2xIuT2lcU6rCSw==}
@@ -1431,6 +1542,12 @@ packages:
     resolution: {integrity: sha512-WkUDrojuJs0xkgGf2udWxa3yGBRxPtxUkB79i6aCZLRgc7PM8fZe9TosfPDcvEpQZbuFASnHYmRLBLUbmLOIIA==}
     engines: {node: '>= 12.0.0'}
 
+  lodash.isempty@4.4.0:
+    resolution: {integrity: sha512-oKMuF3xEeqDltrGMfDxAPGIVMSSRv8tbRSODbrs4KGsRRLEhrW8N8Rd4DRgB2+621hY8A8XwwrTVhXWpxFvMzg==}
+
+  lodash.isobject@3.0.2:
+    resolution: {integrity: sha512-3/Qptq2vr7WeJbB4KHUSKlq8Pl7ASXi3UG6CMbBm8WRtXi8+GHm7mKaU3urfpSEzWe2wCIChs6/sdocUsTKJiA==}
+
   lz-string@1.5.0:
     resolution: {integrity: sha512-h5bgJWpxJNswbU7qCrV0tIKQCaS3blPDrqKWx+QxzuzL1zGUzij9XCWLrSLsJPu5t+eWA/ycetzYAO5IOMcWAQ==}
     hasBin: true
@@ -1514,8 +1631,20 @@ packages:
     peerDependencies:
       react: ^19.3.0
 
+  react-intersection-observer@10.1.0:
+    resolution: {integrity: sha512-V8HDu3+Llg6OEhOxx8LnUSS0t4VS+1Xk9ZatkI8Jct/H0CwKnqFTCu8NT3q7ghJTghTdIrEMPSWr2dkKPG+gdQ==}
+    peerDependencies:
+      react: ^17.0.0 || ^18.0.0 || ^19.0.0
+      react-dom: ^17.0.0 || ^18.0.0 || ^19.0.0
+    peerDependenciesMeta:
+      react-dom:
+        optional: true
+
   react-is@17.0.2:
     resolution: {integrity: sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==}
+
+  react-is@19.3.0:
+    resolution: {integrity: sha512-UpMYezM4v5/18F28aC66AEsjXIgE02kyEMH6yLdgLXu/UTfa1Ntwck/nNLrbqJsEXW7gPb0coNO9FQse9WTovA==}
 
   react@19.3.0:
     resolution: {integrity: sha512-E8LUcbtBWt20bbl2YoHfx4ZDBdxVTfOKtCZn9cDSJ4l6/nuoApcpIBcj47t2wZoVX8g2ZHuMHbiShgCR1T5Sog==}
@@ -1717,6 +1846,10 @@ snapshots:
 
   '@blazediff/core@1.9.1': {}
 
+  '@github/mini-throttle@2.1.1': {}
+
+  '@github/relative-time-element@5.3.1': {}
+
   '@jridgewell/gen-mapping@0.3.13':
     dependencies:
       '@jridgewell/sourcemap-codec': 1.6.0
@@ -1735,6 +1868,10 @@ snapshots:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.6.0
+
+  '@lit-labs/react@1.2.1': {}
+
+  '@lit-labs/ssr-dom-shim@1.6.0': {}
 
   '@module-federation/dts-plugin@2.9.0(typescript@6.0.2)(vue-tsc@3.3.11(typescript@6.0.2))':
     dependencies:
@@ -1785,6 +1922,8 @@ snapshots:
       - typescript
       - utf-8-validate
       - vue-tsc
+
+  '@oddbird/popover-polyfill@0.5.2': {}
 
   '@oxc-project/runtime@0.149.0': {}
 
@@ -1926,6 +2065,45 @@ snapshots:
 
   '@polka/url@1.0.0-next.29': {}
 
+  '@primer/behaviors@1.11.0': {}
+
+  '@primer/live-region-element@0.8.0':
+    dependencies:
+      '@lit-labs/ssr-dom-shim': 1.6.0
+
+  '@primer/octicons-react@19.38.0(react@19.3.0)':
+    dependencies:
+      react: 19.3.0
+
+  '@primer/primitives@11.10.0': {}
+
+  '@primer/react@38.40.0(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react-is@19.3.0)(react@19.3.0)':
+    dependencies:
+      '@github/mini-throttle': 2.1.1
+      '@github/relative-time-element': 5.3.1
+      '@lit-labs/react': 1.2.1
+      '@oddbird/popover-polyfill': 0.5.2
+      '@primer/behaviors': 1.11.0
+      '@primer/live-region-element': 0.8.0
+      '@primer/octicons-react': 19.38.0(react@19.3.0)
+      '@primer/primitives': 11.10.0
+      '@tanstack/react-virtual': 3.14.13(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      clsx: 2.1.1
+      color2k: 2.0.4
+      deepmerge: 4.3.1
+      focus-visible: 5.2.1
+      history: 5.3.0
+      hsluv: 1.0.1
+      lodash.isempty: 4.4.0
+      lodash.isobject: 3.0.2
+      react: 19.3.0
+      react-dom: 19.3.0(react@19.3.0)
+      react-intersection-observer: 10.1.0(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      react-is: 19.3.0
+    optionalDependencies:
+      '@types/react': 19.3.0
+      '@types/react-dom': 19.3.0(@types/react@19.3.0)
+
   '@rolldown/pluginutils@1.0.1': {}
 
   '@standard-schema/spec@1.1.0': {}
@@ -1997,6 +2175,14 @@ snapshots:
       '@tailwindcss/oxide': 4.3.3
       tailwindcss: 4.3.3
       vite: '@voidzero-dev/vite-plus-core@0.3.2(@types/node@24.13.4)(jiti@2.7.0)(typescript@6.0.2)'
+
+  '@tanstack/react-virtual@3.14.13(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
+    dependencies:
+      '@tanstack/virtual-core': 3.17.11
+      react: 19.3.0
+      react-dom: 19.3.0(react@19.3.0)
+
+  '@tanstack/virtual-core@3.17.11': {}
 
   '@testing-library/dom@10.4.2':
     dependencies:
@@ -2336,9 +2522,15 @@ snapshots:
 
   chai@6.2.2: {}
 
+  clsx@2.1.1: {}
+
+  color2k@2.0.4: {}
+
   convert-source-map@2.0.0: {}
 
   csstype@3.2.3: {}
+
+  deepmerge@4.3.1: {}
 
   dequal@2.0.3: {}
 
@@ -2367,10 +2559,18 @@ snapshots:
     optionalDependencies:
       picomatch: 4.0.7
 
+  focus-visible@5.2.1: {}
+
   fsevents@2.3.3:
     optional: true
 
   graceful-fs@4.2.11: {}
+
+  history@5.3.0:
+    dependencies:
+      '@babel/runtime': 7.29.7
+
+  hsluv@1.0.1: {}
 
   isomorphic-ws@5.0.0(ws@8.21.0):
     dependencies:
@@ -2478,6 +2678,10 @@ snapshots:
       lightningcss-win32-arm64-msvc: 1.33.0
       lightningcss-win32-x64-msvc: 1.33.0
 
+  lodash.isempty@4.4.0: {}
+
+  lodash.isobject@3.0.2: {}
+
   lz-string@1.5.0: {}
 
   magic-string@0.30.21:
@@ -2577,7 +2781,15 @@ snapshots:
       react: 19.3.0
       scheduler: 0.28.0
 
+  react-intersection-observer@10.1.0(react-dom@19.3.0(react@19.3.0))(react@19.3.0):
+    dependencies:
+      react: 19.3.0
+    optionalDependencies:
+      react-dom: 19.3.0(react@19.3.0)
+
   react-is@17.0.2: {}
+
+  react-is@19.3.0: {}
 
   react@19.3.0: {}
 

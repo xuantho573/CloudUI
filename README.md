@@ -38,8 +38,8 @@ pnpm check      # format, lint and type check
 
 Two workspace packages, split by what sharing _costs_:
 
-| Package             | Holds                                             | Runtime cost                     |
-| ------------------- | ------------------------------------------------- | -------------------------------- |
+| Package              | Holds                                             | Runtime cost                     |
+| -------------------- | ------------------------------------------------- | -------------------------------- |
 | `@cloud-ui/contract` | Types: `MountProps`, `RemoteModule`, `RemoteName` | None — erased at build           |
 | `@cloud-ui/shared`   | Event bus, design tokens, shared assets           | One federated singleton instance |
 
@@ -98,6 +98,76 @@ so the bug only appears once a shared asset grows past that threshold. The
 federation plugin's `publicPath: "auto"` does **not** fix it — verified against
 this plugin version.
 
+## Adding a remote
+
+Remotes are built from `@cloud-ui/remote-kit`, so a new one is three small files
+and one host registration. A React remote:
+
+```ts
+// apps/my-remote/module-federation.config.ts
+import { defineRemoteFederation } from "@cloud-ui/remote-kit/federation";
+
+export default defineRemoteFederation({
+  name: "my-remote",
+  mount: "./src/mount.tsx",
+  shared: { react: { singleton: true }, "react-dom": { singleton: true } },
+  extra: { dev: { remoteHmr: true } }, // required on every React remote
+});
+```
+
+```ts
+// apps/my-remote/vite.config.ts
+import { defineRemoteConfig } from "@cloud-ui/remote-kit";
+import react from "@vitejs/plugin-react";
+import { defineConfig } from "vite-plus";
+import mfConfig from "./module-federation.config";
+
+export default defineConfig(({ mode }) =>
+  defineRemoteConfig({
+    federation: mfConfig,
+    mode,
+    portEnvKey: "MY_REMOTE_PORT",
+    plugins: [react()],
+  }),
+);
+```
+
+```tsx
+// apps/my-remote/src/mount.tsx
+import { createReactRemote } from "@cloud-ui/remote-kit/react";
+import App from "./App.tsx";
+
+export const { mount } = createReactRemote({ name: "my-remote", App });
+```
+
+Then register it: add the name to `REMOTE_NAMES` in `packages/contract`, add an
+entry to `REMOTES` in `apps/host/src/main.ts`, and — for a **React** remote —
+add it to the `reactRefreshBridge({ remotes: [...] })` list in the host's
+`vite.config.ts`. `apps/primer-remote` is a working second React remote built
+exactly this way.
+
+The kit owns the settings that are easy to get wrong and hard to debug: port
+reservation, `base: "./"` for cross-origin assets, `cors`, `build.target`, the
+per-remote `shareScope`, and the `@cloud-ui/shared` singleton override. Each is
+commented at its definition in `packages/remote-kit/src/`.
+
+### React Fast Refresh in dev
+
+React remotes are compiled to expect a Fast Refresh preamble on the page that
+owns them. This host ships no React, so `reactRefreshBridge` (in
+`@cloud-ui/remote-kit/host`) injects one, loading the runtime from a React
+remote's own `/@mf-react-refresh-local` endpoint.
+
+The runtime is per-page, not per-remote, so **any one** React remote can supply
+it — the bridge tries each in turn and stops at the first that answers. That is
+what lets a second or third React remote work without further wiring.
+
+Note: `@vitejs/plugin-react`'s `reactRefreshHost` option looks like it should
+replace all of this, but it makes the remote fetch `/@react-refresh` from the
+host origin, and Vite serves that endpoint only to same-origin requests — it
+404s cross-origin even with `cors: true`. It assumes the host is itself a React
+app. Verified against this plugin version.
+
 ## The remote contract
 
 A remote exposes exactly one thing — a `mount` function:
@@ -149,11 +219,33 @@ A few details are load-bearing and easy to break:
 - After changing `.env`, **restart the dev servers**. Vite bakes
   `import.meta.env` into its dep cache; editing env values under running servers
   leaves a stale cache and remotes fail to initialize.
-- If a remote fails with `Remote container initialization failed` /
-  `Cannot read properties of undefined (reading 'd')`, the host and the remote
-  are holding mismatched copies of the federation runtime from stale
-  pre-bundling. Clear the dep caches and restart:
+- **`ReactDOMSharedInternals is undefined`** (Firefox) or **`Cannot read
+properties of undefined (reading 'd')`** (Chrome) — same bug, different
+  wording. `.d` is a property of `ReactDOMSharedInternals`, which `react-dom`
+  reads off the `react-dom` package object at import time. It is undefined when
+  a page ends up with more than one React.
 
-  ```bash
-  rm -rf apps/*/node_modules/.vite && pnpm dev
+  Cause: every React remote declares `react`/`react-dom` as shared, but if those
+  shares land in _per-remote_ scopes, `singleton: true` only dedupes within a
+  scope — so two React remotes each load their own React and one `react-dom`
+  binds to internals that were never set.
+
+  Fix (already applied in `@cloud-ui/remote-kit`): framework packages are pinned
+  to a scope shared by every remote of that framework via `frameworkScope`
+  (default `"default"`), while each remote keeps its own scope for its exposed
+  modules. The host declares the same shares with `import: false` so the scope
+  exists before any remote initializes, without bundling React.
+
+  To confirm one React is live, check that only one origin serves it:
+
+  ```js
+  new Set(
+    performance
+      .getEntriesByType("resource")
+      .filter((e) => /deps\/react\.js/.test(e.name))
+      .map((e) => new URL(e.name).origin),
+  );
   ```
+
+  Most visible after restarting a single remote, since that is when its module
+  graph diverges from the host's.

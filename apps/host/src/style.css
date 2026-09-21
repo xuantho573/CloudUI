@@ -50,3 +50,20 @@ main {
   font-size: 0.8rem;
   word-break: break-word;
 }
+
+#content {
+  @apply flex flex-col gap-y-4;
+}
+
+/* Scoped to the remote's own subtree so it does not restyle the host page. */
+.remote-card {
+  color: inherit;
+  line-height: 1.5;
+  box-sizing: border-box;
+}
+
+.remote-card *,
+.remote-card *::before,
+.remote-card *::after {
+  box-sizing: inherit;
+}

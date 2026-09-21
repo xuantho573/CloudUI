@@ -9,6 +9,6 @@ export default defineConfig(({ mode }) =>
     mode,
     federation: mfConfig,
     plugins: [react()],
-    portEnvKey: "VITE_REACT_REMOTE_PORT",
+    portEnvKey: "VITE_PRIMER_REMOTE_PORT",
   }),
 );

@@ -26,7 +26,7 @@ export default defineConfig({
     ],
     overrides: [
       {
-        files: ["apps/react-remote/**"],
+        files: ["apps/react-remote/**", "apps/primer-remote/**"],
         plugins: ["react"],
         rules: {
           "react/rules-of-hooks": "error",

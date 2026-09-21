@@ -1,5 +1,5 @@
 {
-  "name": "host",
+  "name": "primer-remote",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -10,13 +10,13 @@
   },
   "dependencies": {
     "@cloud-ui/shared": "workspace:*",
-    "@module-federation/runtime": "catalog:"
+    "react": "catalog:",
+    "react-dom": "catalog:"
   },
   "devDependencies": {
-    "@module-federation/vite": "catalog:",
-    "@tailwindcss/vite": "^4.3.3",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
     "@vitejs/plugin-react": "^6.1.1",
-    "tailwindcss": "^4.3.3",
     "typescript": "catalog:",
     "vite": "catalog:",
     "vite-plus": "catalog:"

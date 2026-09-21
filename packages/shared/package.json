@@ -5,7 +5,20 @@
   "type": "module",
   "exports": {
     ".": "./src/index.ts",
+    "./config": "./src/config.ts",
+    "./create-remote": "./src/createRemote.ts",
     "./tokens.css": "./src/tokens.css",
     "./assets/*": "./assets/*"
+  },
+  "dependencies": {
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "vue": "catalog:"
+  },
+  "devDependencies": {
+    "@module-federation/vite": "catalog:",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "vue-tsc": "^3.3.11"
   }
 }

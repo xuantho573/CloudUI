@@ -9,6 +9,11 @@ catalog:
   react: 19.3.0
   react-dom: 19.3.0
   typescript: ^6.0.2
+  "@types/react": 19.3.0
+  "@types/react-dom": 19.3.0
+  "@module-federation/runtime": 2.9.0
+  "@module-federation/vite": ^1.21.6
+  vue: ^3.5.42
 overrides:
   vite@*: "catalog:"
 peerDependencyRules:

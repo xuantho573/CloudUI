@@ -3,9 +3,8 @@
   "references": [
     { "path": "./apps/host" },
     { "path": "./apps/react-remote" },
+    { "path": "./apps/primer-remote" },
     { "path": "./apps/vue-remote" },
-    { "path": "./packages/contract" },
-    { "path": "./packages/shared" },
-    { "path": "./tools/dev-registry" }
+    { "path": "./packages/shared" }
   ]
 }
