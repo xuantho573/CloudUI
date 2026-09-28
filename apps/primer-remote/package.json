@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@cloud-ui/shared": "workspace:*",
+    "@primer/primitives": "^11.10.0",
+    "@primer/react": "^38.40.0",
     "react": "catalog:",
     "react-dom": "catalog:"
   },
