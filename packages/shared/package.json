@@ -20,7 +20,9 @@
     "@tailwindcss/vite": "catalog:",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
+    "@vitejs/plugin-react": "^6.1.1",
+    "@vitejs/plugin-vue": "^6.0.8",
     "tailwindcss": "catalog:",
-    "vue-tsc": "^3.3.11"
+    "vue-tsc": "catalog:"
   }
 }

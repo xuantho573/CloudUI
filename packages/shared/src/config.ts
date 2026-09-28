@@ -1,6 +1,8 @@
 import { createModuleFederationConfig, federation } from "@module-federation/vite";
 import { loadEnv, type PluginOption, type UserConfig } from "vite-plus";
 import tailwindcss from "@tailwindcss/vite";
+import vue from "@vitejs/plugin-vue";
+import react from "@vitejs/plugin-react";
 
 export interface RemoteFederationOptions {
   name: string;
@@ -48,6 +50,8 @@ interface RemoteConfigOptions {
    * Unset or 0 means "any free port".
    */
   portEnvKey: string;
+
+  framework: "vue" | "react";
   /** Framework plugin(s): react(), vue(), etc. */
   plugins?: PluginOption[];
 }
@@ -64,6 +68,7 @@ export function defineRemoteConfig({
   federation: mfConfig,
   mode,
   portEnvKey,
+  framework,
   plugins = [],
 }: RemoteConfigOptions): UserConfig {
   // Env lives at the workspace root so every app shares one file.
@@ -83,7 +88,23 @@ export function defineRemoteConfig({
     // origin. (The federation plugin's publicPath: "auto" does NOT affect
     // these asset URLs — verified against this plugin version.)
     base: "./",
-    plugins: [...plugins, tailwindcss(), federation(mfConfig)],
+    plugins: [
+      ...plugins,
+      ...(framework === "vue"
+        ? [
+            vue({
+              features: {
+                componentIdGenerator(filepath, source, isProduction, getHash) {
+                  return getHash(`${mfConfig.name}-${filepath}${isProduction ? source : ""}`);
+                },
+              },
+            }),
+          ]
+        : []),
+      ...(framework === "react" ? [react()] : []),
+      tailwindcss(),
+      federation(mfConfig),
+    ],
     server: {
       // publishRemote records this port so the host can find us; nothing
       // hardcodes it. Set <portEnvKey> to pin it.

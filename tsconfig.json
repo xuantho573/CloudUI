@@ -5,6 +5,7 @@
     { "path": "./apps/react-remote" },
     { "path": "./apps/primer-remote" },
     { "path": "./apps/vue-remote" },
+    { "path": "./apps/reka-ui-remote" },
     { "path": "./packages/shared" }
   ]
 }

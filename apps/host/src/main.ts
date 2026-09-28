@@ -9,8 +9,14 @@ import "@cloud-ui/shared/tokens.css";
 import "./style.css";
 import "./App.css";
 
-async function bootRemote(root: HTMLElement, name: string, entry: string): Promise<void> {
-  const framework = name === "vue-remote" ? "vue" : "react";
+type Remote = {
+  name: string;
+  entry: string;
+  framework: "vue" | "react";
+};
+
+async function bootRemote(root: HTMLElement, remote: Remote): Promise<void> {
+  const { name, entry, framework } = remote;
   const el = document.createElement("div");
 
   const block = document.createElement("section");
@@ -58,18 +64,26 @@ on("remote:mounted", (payload) => {
   console.log("host: shared bus received remote:mounted from", payload);
 });
 
-const REMOTES = [
+const REMOTES: Remote[] = [
   {
     name: "react-remote",
     entry: `http://localhost:${import.meta.env.VITE_REACT_REMOTE_PORT}/remoteEntry.js`,
+    framework: "react",
   },
   {
     name: "primer-remote",
     entry: `http://localhost:${import.meta.env.VITE_PRIMER_REMOTE_PORT}/remoteEntry.js`,
+    framework: "react",
   },
   {
     name: `vue-remote`,
     entry: `http://localhost:${import.meta.env.VITE_VUE_REMOTE_PORT}/remoteEntry.js`,
+    framework: "vue",
+  },
+  {
+    name: `reka-ui-remote`,
+    entry: `http://localhost:${import.meta.env.VITE_REKA_UI_REMOTE_PORT}/remoteEntry.js`,
+    framework: "vue",
   },
 ];
 
@@ -79,8 +93,8 @@ async function main() {
   const content = document.getElementById("content");
   if (!content) return;
 
-  for (const { name, entry } of REMOTES) {
-    await bootRemote(content, name, entry);
+  for (const remote of REMOTES) {
+    await bootRemote(content, remote);
   }
 }
 

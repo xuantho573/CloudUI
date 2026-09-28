@@ -1,4 +1,3 @@
-import vue from "@vitejs/plugin-vue";
 import { defineConfig } from "vite-plus";
 import { defineRemoteConfig } from "@cloud-ui/shared/config";
 
@@ -9,6 +8,6 @@ export default defineConfig(({ mode }) =>
     federation: mfConfig,
     mode,
     portEnvKey: "VITE_VUE_REMOTE_PORT",
-    plugins: [vue()],
+    framework: "vue",
   }),
 );

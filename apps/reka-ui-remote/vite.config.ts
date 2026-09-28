@@ -1,13 +1,13 @@
-import { defineRemoteConfig } from "@cloud-ui/shared/config";
 import { defineConfig } from "vite-plus";
+import { defineRemoteConfig } from "@cloud-ui/shared/config";
 
 import mfConfig from "./module-federation.config";
 
 export default defineConfig(({ mode }) =>
   defineRemoteConfig({
-    mode,
     federation: mfConfig,
-    portEnvKey: "VITE_REACT_REMOTE_PORT",
-    framework: "react",
+    mode,
+    portEnvKey: "VITE_REKA_UI_REMOTE_PORT",
+    framework: "vue",
   }),
 );
