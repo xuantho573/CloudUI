@@ -17,8 +17,10 @@
   },
   "devDependencies": {
     "@module-federation/vite": "catalog:",
+    "@tailwindcss/vite": "catalog:",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
+    "tailwindcss": "catalog:",
     "vue-tsc": "^3.3.11"
   }
 }

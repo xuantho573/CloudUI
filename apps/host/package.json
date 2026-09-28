@@ -14,9 +14,9 @@
   },
   "devDependencies": {
     "@module-federation/vite": "catalog:",
-    "@tailwindcss/vite": "^4.3.3",
+    "@tailwindcss/vite": "catalog:",
     "@vitejs/plugin-react": "^6.1.1",
-    "tailwindcss": "^4.3.3",
+    "tailwindcss": "catalog:",
     "typescript": "catalog:",
     "vite": "catalog:",
     "vite-plus": "catalog:"

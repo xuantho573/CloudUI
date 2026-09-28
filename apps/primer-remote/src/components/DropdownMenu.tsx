@@ -16,7 +16,7 @@ export default function DropdownMenu<T extends string | number | boolean>({
       <ActionMenu.Button>{triggerLabel}</ActionMenu.Button>
       <ActionMenu.Overlay>
         <ActionList>
-          {items.map((item) => <ActionList.Item onSelect={() => onItemSelect(item)}>{item.toString()}</ActionList.Item>)}
+          {items.map((item, idx) => <ActionList.Item key={idx} onSelect={() => onItemSelect(item)}>{item.toString()}</ActionList.Item>)}
         </ActionList>
       </ActionMenu.Overlay>
     </ActionMenu>

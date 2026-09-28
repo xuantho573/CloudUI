@@ -1,5 +1,6 @@
 import { createModuleFederationConfig, federation } from "@module-federation/vite";
 import { loadEnv, type PluginOption, type UserConfig } from "vite-plus";
+import tailwindcss from "@tailwindcss/vite";
 
 export interface RemoteFederationOptions {
   name: string;
@@ -82,7 +83,7 @@ export function defineRemoteConfig({
     // origin. (The federation plugin's publicPath: "auto" does NOT affect
     // these asset URLs — verified against this plugin version.)
     base: "./",
-    plugins: [...plugins, federation(mfConfig)],
+    plugins: [...plugins, tailwindcss(), federation(mfConfig)],
     server: {
       // publishRemote records this port so the host can find us; nothing
       // hardcodes it. Set <portEnvKey> to pin it.

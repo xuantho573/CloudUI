@@ -3,18 +3,15 @@ import { BaseStyles } from '@primer/react'
 import { ThemeProvider } from '@primer/react/next'
 
 import "./App.css";
-import DropdownMenu from './components/DropdownMenu';
+
+import HigherUncle from './pages/HigherUncle';
 
 export default function App() {
 
   return (
     <ThemeProvider>
       <BaseStyles>
-        <DropdownMenu
-          triggerLabel='Open menu'
-          items={['First', 'Second', 'Third']}
-          onItemSelect={(item) => console.log(`Select ${item}`)}
-        />
+        <HigherUncle />
       </BaseStyles>
     </ThemeProvider>
   );
