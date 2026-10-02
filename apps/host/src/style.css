@@ -12,26 +12,13 @@ body {
 
 main {
   max-width: 62rem;
+  width: 100%;
   margin: 0 auto;
 }
 
 .shell-header h1 {
   margin: 0 0 0.25rem;
   font-size: 1.5rem;
-}
-
-.shell-header p {
-  margin: 0 0 2rem;
-  opacity: 0.7;
-  max-width: 44rem;
-}
-
-.placeholder {
-  margin: 0;
-  padding: 1.5rem;
-  border: 1px dashed #8886;
-  border-radius: 12px;
-  opacity: 0.6;
 }
 
 .remote-error {
@@ -49,10 +36,6 @@ main {
   opacity: 0.75;
   font-size: 0.8rem;
   word-break: break-word;
-}
-
-#content {
-  @apply flex flex-col gap-y-4;
 }
 
 /* Scoped to the remote's own subtree so it does not restyle the host page. */

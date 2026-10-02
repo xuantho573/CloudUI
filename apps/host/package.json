@@ -14,8 +14,11 @@
   },
   "devDependencies": {
     "@module-federation/vite": "catalog:",
+    "@sveltejs/kit": "^2.70.3",
+    "@sveltejs/vite-plugin-svelte": "^7.3.1",
     "@tailwindcss/vite": "catalog:",
     "@vitejs/plugin-react": "^6.1.1",
+    "svelte": "^5.57.1",
     "tailwindcss": "catalog:",
     "typescript": "catalog:",
     "vite": "catalog:",
