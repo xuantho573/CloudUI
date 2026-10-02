@@ -2,8 +2,6 @@
   import { onMount } from "svelte";
   import { loadRemote, registerRemotes } from "@module-federation/runtime";
   import { type RemoteModule } from "@cloud-ui/shared/create-remote";
-  import { on } from "@cloud-ui/shared";
-  import cloudLogo from "@cloud-ui/shared/assets/cloud-ui.svg";
   import reactLogo from "@cloud-ui/shared/assets/react.svg";
   import vueLogo from "@cloud-ui/shared/assets/vue.svg";
 
@@ -67,23 +65,16 @@
   }
 
   onMount(() => {
-    on("remote:mounted", (payload) => {
-      console.log("host: shared bus received remote:mounted from", payload);
-    });
     REMOTES.forEach(bootRemote);
   });
 </script>
 
-<header class="shell-header">
-  <img src={cloudLogo} class="framework" alt="" width="48" height="48" />
-  <h1>CloudUI</h1>
-</header>
 <main class="flex flex-col gap-y-4">
   {#each REMOTES as { name, framework }}
     <section class="remote-card framework-{framework}">
       <header>
         <img
-          src={name === "vue-remote" ? vueLogo : reactLogo}
+          src={framework === "vue" ? vueLogo : reactLogo}
           class="framework"
           alt="{name} logo"
           width="48"
