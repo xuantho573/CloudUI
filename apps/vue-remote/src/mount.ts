@@ -1,5 +1,12 @@
 import { createVueRemote } from "@cloud-ui/shared/create-remote";
 
-import App from "./App.vue";
+import HigherUncle from "./pages/HigherUncle.vue";
+import Main from "./pages/Main.vue";
 
-export const { mount } = createVueRemote({ name: "vue-remote", App });
+export const { mount } = createVueRemote({
+  name: "vue-remote",
+  pages: {
+    "higher-uncle": HigherUncle,
+    main: Main,
+  },
+});

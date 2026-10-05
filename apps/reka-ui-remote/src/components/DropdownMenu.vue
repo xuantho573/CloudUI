@@ -1,20 +1,17 @@
 <template>
   <DropdownMenuRoot>
     <DropdownMenuTrigger
-      class="rounded px-4 py-2 inline-flex items-center justify-center bg-white hover:bg-stone-50 hover:cursor-pointer"
+      class="rounded px-3 py-1 text-sm text-black bg-white hover:bg-gray-50 hover:cursor-pointer"
       aria-label="Customise options"
     >
       {{ triggerLabel }}
     </DropdownMenuTrigger>
 
     <DropdownMenuPortal>
-      <DropdownMenuContent
-        class="min-w-[220px] outline-none bg-white rounded-md p-1 will-change-[opacity,transform] data-[side=top]:animate-slideDownAndFade data-[side=right]:animate-slideLeftAndFade data-[side=bottom]:animate-slideUpAndFade data-[side=left]:animate-slideRightAndFade"
-        :side-offset="5"
-      >
+      <DropdownMenuContent class="min-w-40 bg-white rounded-lg p-1" :side-offset="5">
         <DropdownMenuItem
           v-for="item in items"
-          class="text-xs leading-none text-black rounded flex items-center h-6 px-1 relative select-none outline-none data-[disabled]:pointer-events-none data-[highlighted]:bg-green-900 data-[highlighted]:text-green-100"
+          class="text-sm leading-none text-black rounded flex items-center px-2 py-1.5 hover:cursor-pointer data-disabled:pointer-events-none data-highlighted:bg-green-50"
           :value="item"
           @select="onItemSelect(item)"
           >{{ item }}</DropdownMenuItem
